@@ -51,7 +51,7 @@ The primary workflow is divided into four main steps: Analayis Prep, Core Analys
 3. Create functions necessary for streamlined workflow 
  - Normalized difference moisture index (NDMI)
  - Normalized difference built-up index (NDBI)
- - Cloud masked bands 
+ - Opening cloud masked bands 
  
 ### Core Analysis for Site and Project Areas
 1. Select site area (LA Metro area; MGRS = T11SLT) and date 
@@ -59,27 +59,32 @@ The primary workflow is divided into four main steps: Analayis Prep, Core Analys
 3. Convert .tifs to rasters with cloud-masked bands
 4. Run NDMI function to determine moisture index over urban area
 5. Overlay shapefiles for select GI and/or stormwater collection sites
+    -Check that shapefiles and rasters are same CRS; convert if not 
 6. Calculate mean NDMI of project areas and compare to non-project areas
-7. Download and assign daily precipication values for chosen date
-8. Assign nearest streamflow gages and daily max values of project area with GAGES II 
+7. Assign daily precipication values for chosen date
+8. Determine applicable streamflow gages for project area and assign daily peak flow value with GAGES II 
 
 ### YoY Time Series Analysis  
 1. Perform Core Analysis steps for same site area, project area, seasonal range year-over-year (YoY) 
 - Loop through 2015 - 2022 Sentinel-2 downloaded datasets to extract similar date/time ranges YoY
 - Filter YoY ranges to time samples within 3 days of "significant" precipitation
 - Calculate mean NDMI values for project sites and non-project sites 
-- Assign daily max discharge values from associated streamflow gages for each project site 
+- Assign daily max discharge values from associated streamflow gages for each project site
+- Plot trends
+    - Plot YoY preciptation values and mean NDVI of project areas to measure how GI and/or greenspace capture stormwater
+    - Plot correlation between daily preciptation and daily peak streamflow values
 
 ### Urban Scale Impacts  
 1. Run NDBI function for site area range to measure change in urban hardscape values across site area 
     - Use inverse of change in hardscape to determine change in "greenscape" to quantify GI and LID scalability 
     - Cross-reference inversely correlated areas with GI project shapefiles to validate methodology 
-2. Compare change in NBDI from 2015 - 2022 with correlation between precipitation and peak streamflow values
+2. Compare change in NBDI from 2015 - 2022 with plots in YoY Time Series Analysis
+    - Determine how change in NBDI correlates with precip and peak streamflow correlation in YoY analysis 
 
 ## Challenges/Questions to Answer 
 
 - Challenge #1: Stream gage data is severely lacking in dense urban environments 
-    -For example, the few active ongoing gauge measurements are on the outer bounds of the LA metro site area of study.
+    -For example, the few active ongoing gage measurements are on the outer bounds of the LA metro site area of study.
     -Are these streamflows well enough correlated with the project areas in question? 
    
 - Challenge #2: How well does using the inverse of NDBI measure changing greenspace within an urban environment?
