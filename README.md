@@ -1,9 +1,11 @@
-# ea-capstone-2022
+# urban-stormwater-capture
 Final project repository for Earth Data Analytics 2022 CU Boulder course
 
 
 # Project
 Goal: Measure the role and impact of urban green infrastructure (GI) projects and low impact development (LID) on stormwater capture and discharge at both the site/project level and urban scale in the Los Angeles region.  
+
+This repository will provide the analysis tools and datasets needed to measure impact of GI projects and other urban greenspace features. The major site area focuses on Los Angeles County, where recapture of stormwater is critically important to replenishing local groundwater resources. However, this same code and workflow could be used for other urban environments where project area shapefiles can be provided.  
 
 WHAT IS A GREEN INFRASTRUCTURE PROJECT?  
 Green infrastructure projects are geo-engineered features that help redirect and recapture stormwater runoff from urban hardscapes 
@@ -17,6 +19,7 @@ Can be site-scale projects such as water retention ponds and bioswales, or urban
 Installation instructions to install Python and required Python packages can be found here: 
 https://www.earthdatascience.org/courses/intro-to-earth-data-science/python-code-fundamentals/use-python-packages/
 
+Other supporting packages for import are listed at the top of the workflow and can be exectuted prior to the main code. 
 
 # Data 
 The following data sources have been used in this analysis and can be followed to reproduce similar workflows. 
@@ -29,6 +32,7 @@ The following data sources have been used in this analysis and can be followed t
 ### Shapefiles
 - Sentinel-2 Military Grid Reference System (MGRS) Shapefiles: https://github.com/justinelliotmeyers/Sentinel-2-Shapefile-Index.git
 - LA Streams and Rivers: https://data.lacounty.gov/GIS-Data/Streams-and-Rivers/6bsh-b6vg
+- LA County Stormwater Spreading Grounds: https://data.lacounty.gov/Shape-Files/LA-County-Spreading-Grounds/36uw-n6yh
 - GAGES (Geospatial Attributes of Gages for Evaluating Streamflow) II Gage Boundaries:  https://water.usgs.gov/GIS/metadata/usgswrd/XML/gagesII_Sept2011.xml#stdorder
 
 
@@ -56,13 +60,13 @@ The primary workflow is divided into four main steps: Analayis Prep, Core Analys
 ### Core Analysis for Site and Project Areas
 1. Select site area (LA Metro area; MGRS = T11SLT) and date 
 2. Source pathway to proper Sentinel-2 data .tif files for location & date
-3. Convert .tifs to rasters with cloud-masked bands
+3. Convert .tifs to rasters and test plot rasters to validate data is correct
 4. Run NDMI function to determine moisture index over urban area
 5. Overlay shapefiles for select GI and/or stormwater collection sites
     -Check that shapefiles and rasters are same CRS; convert if not 
 6. Calculate mean NDMI of project areas and compare to non-project areas
 7. Assign daily precipication values for chosen date
-8. Determine applicable streamflow gages for project area and assign daily peak flow value with GAGES II 
+8. Determine applicable streamflow gages for poject area and assign daily peak flow value with GAGES II 
 
 ### YoY Time Series Analysis  
 1. Perform Core Analysis steps for same site area, project area, seasonal range year-over-year (YoY) 
