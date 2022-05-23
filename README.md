@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/481719777.svg)](https://zenodo.org/badge/latestdoi/481719777)
+
 # urban-stormwater-capture
 Final project repository for Earth Data Analytics 2022 CU Boulder course
 
@@ -94,7 +96,6 @@ The primary workflow is divided into four main steps: Analayis Prep, Core Analys
 - Challenge #2: How well does using the inverse of NDBI measure changing greenspace within an urban environment?
     - Los Angeles instituted a low impact development (LID) ordinance in 2012 and targeted GI projects in it's 2015 and 2019 "Sustainability pLAn" efforts. These efforts were primarily focused on mitigating stormwater runoff and improving quality. Can we see the macro-scale impacts of this here? 
 
-[![DOI](https://zenodo.org/badge/481719777.svg)](https://zenodo.org/badge/latestdoi/481719777)
 
 
 
