@@ -1,0 +1,57 @@
+#!/usr/bin/env python
+# coding: utf-8
+
+# In[ ]:
+
+
+def open_clean_bands(band_path,
+                     crop_bound,
+                     valid_range,
+                    pixel_qa_path):
+
+    """
+    Open, clean, and crop a file into an xarray DataArray.
+
+    Parameters
+    -----------
+    band_path:string
+        A path to the array to be opened
+    crop_bound:geopandas GeoDataFrame
+        A geopandas dataframe to be used to crop the raster data using rioxarray clip().
+    valid_range:tuple (optional)
+         A tuple of min and max range of values for the data. Default = None
+
+    Returns
+    -----------
+
+    band : xarray DataArray
+        End result for a cropped xarray dataarray
+    """
+
+    crop_bound_box = [box(*crop_bound.total_bounds)]
+
+    try:
+        band = rxr.open_rasterio(band_path,
+                                 masked=True).rio.clip(
+                                                        crop_bound_box,
+                                                        crs=crop_bound.crs,
+                                                        all_touched=True,
+                                                        from_disk=True).squeeze()
+
+        mask = ((band < valid_range[0]) | (band > valid_range[1]))
+        band = band.where(~xr.where(mask, True, False))
+
+        # open and mask cloud layer
+        cl_mask = (rxr.open_rasterio(pixel_qa_path, masked=True)
+                        .rio.clip(crop_bound.geometry, from_disk=True)
+                        .squeeze())
+
+        # apply cloud mask
+        band = band.where(cl_mask.isin(goodQuality)).squeeze()
+
+    except:
+        raise ValueError(
+            "Oops - I couldn't clip your data. This may be due to a crs error.")
+
+
+    return band
