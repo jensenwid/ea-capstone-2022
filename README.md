@@ -36,8 +36,13 @@ Other supporting packages for import are listed at the top of the workflow and c
 - Name: urban-stormwater-capture
 - Link: https://github.com/jensenwid/urban-stormwater-capture.git
 - Files:
+  - README
+  - data: Folder containing supporting data files, including all files listed in Data section below EXCEPT for Spatial Data (Sentinel-2 HLS data) 
   - graphics: Folder containing images for example stormwater spreading grounds
-  -
+  - LICENSE: Permissive license
+  - ea-capstone-workbook-2022.ipynb: Working Jupyter Notebook for analysis
+  - functions.ipynb: Exported functions for code used in main nb
+  - environment.droplet.yml: env
 
 
 # Data
